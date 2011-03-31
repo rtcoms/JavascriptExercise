@@ -1,0 +1,27 @@
+<html>
+<head>
+	<script language="javascript">
+	var alerted=false;
+	function fortb1()
+	{
+		document.getElementById("tb2").disabled=false;
+		if(alerted==false)
+		{
+		alert("What ever you type in this text field will be copied to textfield2");
+		alerted=true;
+		}
+	}
+	function fortb2()
+	{
+	document.getElementById("tb2").value=document.getElementById("tb1").value;
+	document.getElementById("tb2").disabled=true;
+	alerted=false;
+		
+	}
+	</script>
+	</head>
+<body>
+	textbox 1 : <input type="textbox" id="tb1" onfocus="fortb1()">
+	textbox 2 : <input type="textbox" id="tb2" onfocus="fortb2()">
+	</body>
+</html>

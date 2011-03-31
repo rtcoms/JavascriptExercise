@@ -1,0 +1,38 @@
+<html>
+<head>
+	<script language="javascript">
+	function BW_OS_detection()
+	{
+		var userAgent=document.write(navigator.userAgent);
+		var useragentSplit=navigator.userAgent.split(/\s*[;)(]\s*/);
+		document.write(useragentSplit);
+		document.write("<br />");
+		document.write("OS is : "+useragentSplit[3]);
+		document.write("<br />");
+		document.write("Browser is :"+useragentSplit[6]);
+		document.write("<br />");
+		document.write(navigator.cookieEnabled);
+		document.write("<br />");
+		document.write(navigator.javaEnabled());
+		document.write("<br />");
+		document.write(navigator.language);
+		if(navigator.mimeTypes && window.console && window.console.log)
+		{
+		  for(var p in navigator.mimeTypes){
+		    document.write(navigator.mimeTypes[p].type);
+		    document.write("<br />");
+		  }
+		}
+		var result;
+		if (/^Linux/.test(useragentSplit[3]))
+		    result = useragentSplit[6].split("/").pop(); // "8.10" (Ubuntu)
+		else
+		    result = useragentSplit[3].split(" ").pop(); // "6.1" (Win 7)
+		
+		alert("Screen width :"+" "+screen.width+"Screen height :"+" "+screen.height+"screen colordepth:"+" "+screen.colorDepth)
+	}
+	</script
+	</head>
+<body onLoad="BW_OS_detection()">
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Functions in javaScript</title>
+	<script language="javascript">
+		function factorial(n)
+		{
+			var p=1;
+			for(var m=1;m<=n;m++)
+			{
+				p=p*m;
+			}
+			return p;
+		}
+		var fnPrompt = new Function ("name=prompt(\"Please enter you name :\", \"\");if(name.length==0){alert(\"no name entered by you\");}else{document.write(\"Hello\"+\"\"+name);};");
+		fnPrompt.call();
+		var noOfChars=name.length;
+		document.write("<br />");
+		document.write("No of characters :");
+		document.write(noOfChars);
+		document.write("<br />");
+		document.write("Factorial :");
+		var fact=factorial(noOfChars);
+		document.write(fact);
+	</script>
+</head>
+<body>
+	</body>
+</html>

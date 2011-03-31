@@ -1,0 +1,55 @@
+<html>
+<head>
+<script language="javascript">
+function loadXMLDoc()
+{
+var xmlhttp;
+
+  xmlhttp=new XMLHttpRequest();
+ 
+
+  xmlhttp.open("GET","http://www.google.com/",true);
+  xmlhttp.send();
+	
+  var responseText;	
+	
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==0)
+    {
+    	alert("request not initialized");
+    }
+	if (xmlhttp.readyState==1)
+    {
+    	alert("server connection established");
+    }
+	if (xmlhttp.readyState==2)
+    {
+    	alert("request recieved");
+    }
+	if (xmlhttp.readyState==3)
+    {
+    	alert("processinmg request");
+    }
+	if (xmlhttp.readyState==4)
+    {
+    	alert("response ready");
+		if(xmlhttp.status == 200)
+		      { 
+				alert("response successful");
+				responseText=xmlhttp.responseText;        // CONSUME SERVER RESPONSE AND CLOSE !!!
+		        self.close();
+		      }
+    }
+  }	
+  //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+  
+}
+</script>
+</head>
+<body onLoad="loadXMLDoc()">
+<div id="mydiv">
+	</div>
+</body>
+</html>
+

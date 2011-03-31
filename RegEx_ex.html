@@ -1,0 +1,50 @@
+<html>
+<head>
+	<script language="javascript">
+	function checkNumeric()
+	{
+		//alert("this is it");
+		var inString=document.getElementById("num").value;
+		//document.write(inString);
+		//regular expression for numeric value
+		var nReg=/\b(\d)+\b/;
+		if(nReg.test(inString))
+		{
+			document.getElementById("res").value="true";
+			document.getElementById("form1").submit();
+		}
+		else
+		{
+			document.getElementById("res").value="false";
+		}
+	}	
+	function checkDomain()
+	{
+		alert("this is in check domain");
+		var domString=document.getElementById("domain").value;
+		
+		var finString1=domString.replace(/^w{3}\.|http[s]?:\/\//,"");
+		var finString=finString1.replace(/(.\w*.\w*)?$/,"");
+		document.write
+		document.write(finString);		
+	}
+	
+	</script>
+	</head>
+<body>
+	<b>Numeric regualar expression check</b>
+	<br />
+	<form id="form1" action="http://www.google.com/">
+	enter no<input type="textbox" id="num">
+	<input type="button" value="submit" onclick="checkNumeric()">
+	result<input type="textbox" id="res">
+	<br />
+	</form>
+	<form>
+	<b>domain/subdomain check</b>
+	enter no<input type="textbox" id="domain">
+	<input type="button" value="submit" onclick="checkDomain()">
+	<br />
+	</form>
+	</body>
+</html>

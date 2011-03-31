@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      var hook = true;
+      window.onbeforeunload = function() {
+        if (hook) {
+          return "You are about to leave this webpage, see you again";
+        }
+      }
+
+      function unhook() {
+        hook=false;
+      }
+
+	  function welcome()
+	  {
+		alert("Welcome to my webpage!!");
+	}
+    </script>
+  </head>
+  <body onload="welcome()">
+    <!-- this will ask for confirmation: -->
+    <a href="http://google.com">external link</a>
+
+    <!-- this will go without asking: -->
+    <a href="anotherPage.html" onClick="unhook()">internal link, un-hooked</a>
+  </body>
+</html>

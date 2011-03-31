@@ -1,0 +1,284 @@
+<html>
+	<head>
+		<script language="javascript">
+		
+			function selectall()
+			{
+				var cboxes = 
+				document.getElementById("boxes").getElementsByTagName("input");
+				for(var i=0;i<cboxes.length;i++)
+				{
+					if(cboxes[i].type="checkbox")
+					{
+						cboxes[i].checked=true;
+					}
+				}
+			}
+			
+			//For exercise 1
+			function selectnone(divname)
+			{
+				if(divname == 1)
+				{
+					var cboxes = 
+					document.getElementById("boxes").getElementsByTagName("input");
+					for(var i=0;i<cboxes.length;i++)
+					{
+						if(cboxes[i].type="checkbox")
+						{
+							cboxes[i].checked=false;
+						}
+					}
+				}
+				if(divname == 2)
+				{
+					var cboxes2 = 
+					document.getElementById("days").getElementsByTagName("input");
+					for(var i=0;i<cboxes2.length;i++)
+					{
+						if(cboxes2[i].type="checkbox")
+						{
+							cboxes2[i].checked=false;
+							if(cboxes2[i].id == "none")
+							{
+								cboxes2[i].checked=true;
+							}
+						}
+					}
+				}
+			}
+			
+			//For exercise 2
+			function getCheckboxByValue(v) {
+			        var inputs = document.getElementById("days").getElementsByTagName("input");
+			        for (var i = 0; i < inputs.length; i++) {
+			                if (inputs[i].type == 'checkbox' && inputs[i].value == v) {
+			                        return inputs[i];
+			                }
+			        }
+			        return false;
+			}
+			
+			function checkCount(j)
+			{
+				var selString="";
+				var cdays = 
+				document.getElementById("days").getElementsByTagName("input");
+				var count=0;
+				if(getCheckboxByValue(cdays.length).checked == true)
+				{
+					getCheckboxByValue(cdays.length).checked = false;
+				}
+				for(var i=0;i<cdays.length;i++)
+				{
+					if(cdays[i].type="checkbox")
+					{
+						if(cdays[i].checked==true && j!=i+1)
+						{
+							count++;
+							if(count==3)
+							{
+								getCheckboxByValue(j).checked=false;
+								alert("Please Select only three. You have already selected :"+selString+cdays[i].id);
+							}
+							else
+							{
+								if(j != i+1)
+								{
+								selString+=cdays[i].id+",";
+								}
+								
+							}
+						}
+					}
+				}
+				
+			}
+			
+			
+			//For exercise 3
+			function addRow()
+			{
+			//	var tableId=document.getElementById("table1");	
+				var noOfRows=document.getElementById("table1").rows.length;
+			    //document.write(noOfRows);
+			
+				var rowInsert=document.getElementById("table1").insertRow(noOfRows);
+				
+				var column1 = rowInsert.insertCell(0);
+				var nameTB = document.createElement("input");
+				nameTB.type = "textbox";
+				nameTB.id = "nameTB";
+				column1.appendChild(nameTB);
+
+				var column2 = rowInsert.insertCell(1);
+				var mailTB = document.createElement("input");
+				mailTB.type = "textbox";
+				mailTB.id = "mailTB";
+				column2.appendChild(mailTB);
+
+				var column3 = rowInsert.insertCell(2);
+				var actionButton = document.createElement("input");
+				actionButton.type = "button";
+				actionButton.value = "Save";
+				actionButton.id = "newSave";
+				//actionButton.onclick = new Function(){saveRow(this);};
+				//actionButton.setAttribute("onClick", "javascript:saveRow(this);");
+				//actionButton.onClick = function saveRow(this);
+				//actionButton.onClick("saveRow(this)");
+				
+				column3.appendChild(actionButton);
+				actionButton.onclick = new Function("saveRow(this)");
+				//document.getElementById("newSave").setAttribute("onclick", "saveRow(this)");
+				
+			}
+			
+			
+			function editRow(e)
+			{
+				var i=e.parentNode.parentNode.rowIndex;
+				var iRow=document.getElementById('table1').rows[i];
+				//var c1Content = cells[0].innerHTML;
+				//document.write(iRow.innerHTML);
+				//var c2Content
+				var cell0=iRow.cells[0];
+				var name=cell0.innerHTML;
+				//document.write(cell1.innerHTML);
+				cell0.innerHTML= "<input type=\"textbox\" id=\"nameTB\" size=30 value="+name+">";
+				
+				var cell1=iRow.cells[1];
+				var mail=cell1.innerHTML;
+				//document.write(cell1.innerHTML);
+				cell1.innerHTML= "<input type=\"textbox\" id=\"mailTB\" size=30 value="+mail+">";
+				
+				
+				var cell2=iRow.cells[2];
+				cell2.innerHTML ="<input type=\"button\" value=\"Save\" onClick=\"saveRow(this)\">";
+			}
+			
+			function deleteRow(r)
+			{
+				var i=r.parentNode.parentNode.rowIndex;
+				document.getElementById('table1').deleteRow(i);
+			}
+			
+			function saveRow(s)
+			{
+				var i=s.parentNode.parentNode.rowIndex;
+				var iRow=document.getElementById('table1').rows[i];
+				//var c1Content = cells[0].innerHTML;
+				//document.write(iRow.innerHTML);
+				//var c2Content
+				var cell0=iRow.cells[0];
+				var name=document.getElementById("nameTB").value;
+				//document.write(cell1.innerHTML);
+				
+				cell0.innerHTML= name;
+				
+				var cell1=iRow.cells[1];
+				var mail=document.getElementById("mailTB").value;
+				//document.write(cell1.innerHTML);
+				cell1.innerHTML= mail;
+				
+				var cell2=iRow.cells[2];
+				cell2.innerHTML ="<a href=\"#\" onClick=\"editRow(this)\">Edit</a>/<a href=\"#\" onClick=\"deleteRow(this)\">Delete</a>";
+			}
+			
+			
+			//For exercise 4
+			function addChild(id)
+			{
+				
+			if(document.getElementById(id).previousSibling.previousSibling.checked == false)
+				{
+					document.getElementById(id).style.display = "none";
+				}
+				else
+				{
+					document.getElementById(id).style.display = "";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="boxes">
+			<input type="checkbox" id="cb1">red
+			<input type="checkbox" id="cb2">green
+			<input type="checkbox" id="cb3">yellow
+			<input type="checkbox" id="cb4">white
+			<input type="checkbox" id="cb5">black
+		</div>
+		
+		<a href="#" onclick="selectall()">check all</a>
+		<a href="#" onclick="selectnone(1)">check none</a><br />
+		
+		<div id="days">
+			<input type="checkbox" id="sunday" value="1" onChange="checkCount(1)">sunday
+			<input type="checkbox" id="monday" value="2" onChange="checkCount(2)">monday
+			<input type="checkbox" id="tuesday" value="3" onChange="checkCount(3)">tuesday
+			<input type="checkbox" id="wednesday" value="4" onChange="checkCount(4)">wednesday
+			<input type="checkbox" id="thursday" value="5" onChange="checkCount(5)">thursday
+			<input type="checkbox" id="friday" value="6" onChange="checkCount(6)">friday
+			<input type="checkbox" id="saturday" value="7" onChange="checkCount(7)">saturday
+			<input type="checkbox" id="none" value="8" onChange="selectnone(2)">none
+		</div>
+		
+		<div id="tablerows">
+			<table id="table1" border="1">
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Action</th>
+				</tr>
+				<tr>
+					<td>Sudeep Mehta</td>
+					<td>sudeep.mehta@gmail.com</td>
+					<td>
+						<a href="#" onClick="editRow(this)">Edit</a>/
+						<a href="#" onClick="deleteRow(this)">Delete</a>
+					</td>
+				</tr>
+			</table>
+			<input type="button" value="Add row" onClick="addRow()">
+		</div>
+		
+		<div style="height:100px;">
+			<b>Chekbox Tree</b>
+			<ul>
+				<li id="colors" >
+					<input type="checkbox" onClick= "addChild('colorsSubMenu')">Color
+					
+					<ul  id="colorsSubMenu" style="display:none">
+						<li><input type="checkbox">Red</li>
+						<li><input type="checkbox">Green</li>
+						<li><input type="checkbox">Blue</li>
+					</ul>
+				</li>
+				<li id="movies">
+					<input type="checkbox" onClick= "addChild('moviesSubMenu')">Movies
+					<ul id="moviesSubMenu" style="display:none">
+						<li><input type="checkbox">Dar</li>
+						<li><input type="checkbox">Sir</li>
+					</ul>
+				</li>
+				<li id="drinks">
+					<input type="checkbox" onClick= "addChild('drinksSubMenu')">Drinks
+					<ul id="drinksSubMenu" style="display:none">
+						<li><input type="checkbox">Coke</li>
+						<li><input type="checkbox">Pepsi</li>
+						<li><input type="checkbox">Dew</li>
+					</ul>
+				</li>
+				<li id="bikes">
+					<input type="checkbox" onClick= "addChild('bikesSubMenu')">Bikes
+					<ul id="bikesSubMenu" style="display:none">
+						<li><input type="checkbox">V-rode</li>
+						<li><input type="checkbox">Pulsar</li>
+						<li><input type="checkbox">CBZ</li>
+					</ul>
+				</li>
+			</ul>
+		</div> 
+		
+	</body>
+</html>

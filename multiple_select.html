@@ -1,0 +1,86 @@
+<html>
+<head>
+	<script language="javascript">
+		function addToSecond()
+		{
+			var leftbox = document.getElementById("leftbox");
+			var selectedCountries = new Array();
+			
+			var p;
+			var count = 0;
+			alert(leftbox.options.length);
+			for(p=0;p<leftbox.options.length;p++)
+			{
+				alert(p)
+				if(leftbox.options[p].selected==true)
+				{
+					alert("this is selected option");
+					
+					//add option to right select box
+					var optn = document.createElement("OPTION");
+					optn.text = leftbox.options[p].value;
+					optn.value = leftbox.options[p].value;
+					rightbox.options.add(optn);
+					
+					//remove option
+					leftbox.remove(p);
+					p=p-1;	
+				}	
+			}
+		}
+		function removeFromSecond()
+		{
+			var rightbox = document.getElementById("rightbox");
+			var selectedCountries = new Array();
+			
+			var p;
+			var count = 0;
+			alert(rightbox.options.length);
+			for(p=0;p<rightbox.options.length;p++)
+			{
+				alert(p)
+				if(rightbox.options[p].selected==true)
+				{
+					alert("this is selected option");
+					
+					//add option to left select box
+					var optn1 = document.createElement("OPTION");
+					optn1.text = rightbox.options[p].value;
+					optn1.value = rightbox.options[p].value;
+					leftbox.options.add(optn1);
+					
+					//remove option
+					rightbox.remove(p);
+					p=p-1;	
+				}	
+			}
+		}
+		
+	</script>
+	</head>
+<body>
+	<table>
+		<tr>
+			<td>
+				<select multiple="multiple" size="5" id="leftbox">
+					<option value="Denmark">Denmark</option>
+					<option value="India">India</option>
+					<option value="USA">USA</option>
+					<option value="France">France</option>
+					<option value="Germany">Germany</option>
+					</select>
+				</td>
+			<td>
+				<input type="Button" value="Add" onClick="addToSecond()">
+				<input type="Button" value="Remove" onClick="removeFromSecond()">
+				</td>
+			<td>
+				<select multiple="multiple" size="5" id=rightbox>
+					
+					</select>
+				</td>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

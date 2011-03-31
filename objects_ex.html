@@ -1,0 +1,53 @@
+<html>
+<head>
+	<script language="javascript">
+	var childwindow;
+	function openwindow()
+	{
+		alert("This is it");
+		childwindow=window.open("http://www.google.com/", "GoogleSearch","width=500,height=500,top=200,left=200");
+		return false;
+	}
+	function closewindow()
+	{
+		childwindow.close();
+		return false;
+	}
+	
+	function move()
+	{
+		window.location="http://www.google.com/";
+	}
+	</script>
+	</head>
+<body onload="timer=setTimeout('move()',10000)">
+	<b>Window object exercise</b><br />
+	
+	<a name="a1" href="javascript: void(0)" 
+	   onclick="openwindow()">Open child window</a>
+	
+	<a name="a2" href="javascrip:void(0)" onclick="closewindow()">Close child window</a>
+	<form name="f1" id="f1"></form>
+	<form name="f2" id="f2"></form>
+	<br />
+	
+	<b>Document object exercise</b><br />
+	<script type="text/javascript">
+	
+	var arrayOfAnchors = document.anchors.length;
+	document.write("No. of anchors :"+arrayOfAnchors);
+	document.write("<br />");
+	document.write("No. of forms :"+document.forms.length);
+	document.write("<br />");
+	</script>
+	
+	<b>Location object exercise</b><br />
+	
+	<b>Navigator object exercise</b><br />
+	<b>Screen object exercise</b><br />
+	
+	
+	<img src="#">
+	<img src="#">
+	</body>
+</html>

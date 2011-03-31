@@ -1,0 +1,142 @@
+<html>
+<head>
+	<script language="javascript">
+	function trim(str)
+	{
+	    if(!str || typeof str != 'string')
+	        return null;
+
+	    return str.replace(/^[\s]+/,'').replace(/[\s]+$/,'').replace(/[\s]{2,}/,' ');
+	}
+	
+	function formValidator()
+	{
+		var emailPattern=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;	
+		
+		if(trim(document.getElementById('loginid').value) == ''|| document.getElementById('loginid').value=="")
+		{
+			alert('Login Id can\'t be empty');
+			return false;
+		}
+		else if(trim(document.getElementById('email').value) == ''|| document.getElementById('email').value == "")
+		{
+			alert('Email can\'t be empty');
+			return false;
+		}		
+		else if(!emailPattern.test(trim(document.getElementById('email').value)))
+		{
+			alert("Email address not valid");
+			return false;
+		}
+			
+		else if(trim(document.getElementById('name').value) == ''|| document.getElementById('name').value == "")
+		{
+			alert('Name can\'t be empty');
+			return false;
+		}
+		else if(trim(document.getElementById('homepage').value) == ''|| document.getElementById('homepage').value == ""||
+		!document.getElementById('homepage').value.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/))
+		{
+			alert('Homepage is not valid');
+			return false;
+		}
+		else if(trim(document.getElementById('aboutme').value).length <= 50)
+		{
+			alert();
+			return false;
+		}
+		else if(document.getElementById('receive?').checked == false)
+		{
+			alert("apply for receive notification");
+		}
+		else
+		{
+			alert('submitting form');
+			return true;
+		}
+		
+	}
+	
+	function promptScript()
+	{
+		var firstname = prompt("Please enter your first name :");
+		if(trim(firstname) == '' || firstname == "")
+		{
+			alert("First name entered is empty");
+		}
+		else
+		{
+			var lastname = prompt("Please enter your last name :");
+			if(trim(lastname) == ''|| lastname == "")
+			{
+				alert("Last name can't be empty");
+			}
+			else
+			{
+				document.getElementById('name').value=firstname+" "+lastname;
+			}
+		}
+		var urllink = prompt("This is for differenr exercise =>Enter URL to open :");
+		if(trim(urllink) == ''|| urllink == "")
+		{
+			alert("URL can't be empty is empty");
+		}
+		else
+		{
+			window.open(urllink,'mywindow','width=400','height=450','scrollbars=no')
+		}
+	}
+	</script>
+</head>
+<body onLoad="promptScript()">
+<center>
+<div width="40%">
+	<b>Registration form</b>
+	<br />
+	<br />
+	<table>
+		<form id="regform">
+		<tr>
+			<td width="40%">Login ID :</td><td><input type="textbox" size="30" id="loginid"></td>
+			</tr>
+		<tr>
+			<td>Email</td><td><input type="textbox" size="30" id="email"></td>
+			</tr>
+		<tr>
+			<td>Name</td><td><input type="textbox" size="30" id="name"></td>
+			</tr>
+		<tr>
+			<td>Time Zone</td><td>
+				<select id="timezone">
+				  <option>GMT</option>
+				  <option>UTC</option>
+				</select>
+			</td>
+			</tr>
+		<tr>
+			<td>Homepage</td><td><input type="textbox" size="30" id="homepage"></td>
+			</tr>
+		<tr>
+			<td colspan="2">About me :</td><td></td>
+			</tr>
+		<tr>
+			<td colspan="2">
+				<textarea rows="10" cols="50" id="aboutme"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="checkbox" name="option1" value="receive" id="receive?"><b> Receive notifications of comments</b><br>
+					<font size="2">You will be sent an email when someone will posts comments <br />on your blog or album</font>
+					<center><input type="Submit" value="Go" method="post" onClick="formValidator()"></center><br />
+					<center>Your password will be mailed to you</center>
+					</td>
+				</tr>
+				</form>
+		</table>
+	<form>
+	</form>
+	</div>
+	</center>
+	</body>
+</html>
